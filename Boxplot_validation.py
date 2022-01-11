@@ -4,17 +4,17 @@ from scipy.stats import mannwhitneyu
 import numpy as np
 
 #abrir todos los archivos necesarios
-clin_miao = pd.read_csv('/home/vant/Miao/Clinical_Miao.csv',sep='\t')
-clin_forde = pd.read_csv('/home/vant/Forde/Clinical_Forde.csv',sep='\t')
-clin_hugo = pd.read_csv('/home/vant/Hugo/Clinical_Hugo.csv',sep='\t')
-clin_van = pd.read_csv('/home/vant/Van_allen/Clinical_Van_allen.csv',sep='\t')
-clin_miao2 = pd.read_csv('/home/vant/Miao2/Clinical_Miao2.csv',sep='\t')
+clin_miao = pd.read_csv('/home/vant/Miao/Clinical_Miao.csv',sep='\t') #Datos clínicos recogidos de Miao et al., 2018
+clin_forde = pd.read_csv('/home/vant/Forde/Clinical_Forde.csv',sep='\t') #Datos clínicos recogidos de Forde et al., 2018
+clin_hugo = pd.read_csv('/home/vant/Hugo/Clinical_Hugo.csv',sep='\t') #Datos clínicos recogidos de Hugo et al., 2016
+clin_van = pd.read_csv('/home/vant/Van_allen/Clinical_Van_allen.csv',sep='\t') #Datos clínicos recogidos de Van allen et al., 2015
+clin_miao2 = pd.read_csv('/home/vant/Miao2/Clinical_Miao2.csv',sep='\t') #Datos clínicos recogidos de Miao et al., 2018
 
-df_forde = pd.read_csv('/home/vant/Forde/new_NMD_Forde.csv',sep='\t')
-df_hugo = pd.read_csv('/home/vant/Hugo/new_NMD_Hugo.csv',sep='\t')
-df_van = pd.read_csv('/home/vant/Van_allen/new_NMDB_Van_Allen.csv',sep='\t')
-df_miao2 = pd.read_csv('/home/vant/Miao2/new_NMD_Miao2.csv',sep='\t')
-df_miao = pd.read_csv('/home/vant/Miao/new_NMD_Miao2.0.csv',sep='\t')
+df_forde = pd.read_csv('/home/vant/Forde/new_NMD_Forde.csv',sep='\t') #dataframe con variantes somáticas con NMD score de Forde et al., 2018
+df_hugo = pd.read_csv('/home/vant/Hugo/new_NMD_Hugo.csv',sep='\t') #dataframe con variantes somáticas con NMD score de Hugo et al., 2016
+df_van = pd.read_csv('/home/vant/Van_allen/new_NMDB_Van_Allen.csv',sep='\t') #dataframe con variantes somáticas con NMD score de Van allen et al., 2015
+df_miao2 = pd.read_csv('/home/vant/Miao2/new_NMD_Miao2.csv',sep='\t') #dataframe con variantes somáticas con NMD score de Miao et al., 2018
+df_miao = pd.read_csv('/home/vant/Miao/new_NMD_Miao2.0.csv',sep='\t') #dataframe con variantes somáticas con NMD score de Miao et al., 2018
 
 df_miao = df_miao.loc[df_miao['Variant_Classification'].str.contains('Frame_Shift')]
 df_miao = df_miao.loc[df_miao['NMDB'] != '.']
