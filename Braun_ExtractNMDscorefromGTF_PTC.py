@@ -11,9 +11,9 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 
 ##Abre el archivo Braun.csv
-filename = '/home/vant/Braun/Braun.csv'
+filename = '/home/vant/Braun/Braun.csv' #Dataframe con las variantes somáticas, se puede descargar de Braun et al., 2020.
 
-## Carga archivos de referencia (gtf, refgen)
+## Carga archivos de referencia (gtf, refgen) Archivo GTF se puede descargar de https://figshare.com/articles/dataset/NMDetective/7803398
 
 gtf = read_gtf("/home/vant/NMDetective/CDS_hg19_NMDetectiveB_Lindeboom_et_al.v2.gtf") #GTF que contiene las zonas CDS de los trasncritos
 gtf_all = read_gtf("/home/vant/NMDetective/hg19_NMDetectiveB_Lindeboom_et_al.v2.gtf") #GTF que contiene toda la información del NMDetectiveB
