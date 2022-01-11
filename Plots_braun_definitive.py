@@ -129,16 +129,16 @@ plotdf2_aux = plotdf2_aux.set_index('ID')
 
 for COHORT in list(set(list(plotdf_aux['Cohort']))):
     plotaux = plotdf_aux.loc[plotdf_aux['Cohort'] == COHORT]
-    U1, p = mannwhitneyu(plotaux['triggersNMD'].loc[plotaux['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotaux['triggersNMD'].loc[plotaux['ORR'].isin(['PD'])])
+    U1, p = mannwhitneyu(plotaux['triggersNMD'].loc[plotaux['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotaux['triggersNMD'].loc[plotaux['ORR'].isin(['PD'])], alternative = 'greater')
     print(COHORT + '  -  ' + str(p))
 
 for COHORT in list(set(list(plotdf2_aux['Cohort']))):
     plotaux2 = plotdf2_aux.loc[plotdf2_aux['Cohort'] == COHORT]
-    U1, p = mannwhitneyu(plotaux2['notriggersNMD'].loc[plotaux2['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotaux2['notriggersNMD'].loc[plotaux2['ORR'].isin(['PD'])])
+    U1, p = mannwhitneyu(plotaux2['notriggersNMD'].loc[plotaux2['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotaux2['notriggersNMD'].loc[plotaux2['ORR'].isin(['PD'])], alternative = 'greater')
     print(COHORT + '  -  ' + str(p))
 
-U1, p = mannwhitneyu(plotdf_aux['triggersNMD'].loc[plotdf_aux['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf_aux['triggersNMD'].loc[plotdf_aux['ORR'].isin(['PD'])])
-U1, p2 = mannwhitneyu(plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['ORR'].isin(['PD'])])
+U1, p = mannwhitneyu(plotdf_aux['triggersNMD'].loc[plotdf_aux['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf_aux['triggersNMD'].loc[plotdf_aux['ORR'].isin(['PD'])], alternative = 'greater')
+U1, p2 = mannwhitneyu(plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['ORR'].isin(['PD'])], alternative = 'greater')
 
 
 ### para fs en general
@@ -644,7 +644,7 @@ for col in cols:
     d = dict(zip(list(df['Tumor_Sample_Barcode']),list(df[col])))
     plotdf[col] = plotdf['Tumor_Sample_Barcode'].map(d)
 
-U1, p = mannwhitneyu(plotdf['count'].loc[plotdf['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf['count'].loc[plotdf['ORR'].isin(['PD'])])
+U1, p = mannwhitneyu(plotdf['count'].loc[plotdf['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf['count'].loc[plotdf['ORR'].isin(['PD'])], alternative = 'greater')
 #####indel clasificados
 plotdf = df.loc[(df['Variant_Classification'].str.contains('Frame_Shift'))].groupby('Tumor_Sample_Barcode')['triggersNMD'].agg('sum').sort_values(ascending=False).reset_index()
 cols = ['Arm','Cohort','ORR','ORRColors']
@@ -663,8 +663,8 @@ for col in cols:
 
 plotdf2 = plotdf2.loc[plotdf2['Arm'] == 'EVEROLIMUS']
 
-U1, p = mannwhitneyu(plotdf['triggersNMD'].loc[plotdf['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf['triggersNMD'].loc[plotdf['ORR'].isin(['PD'])])
-U1, p2 = mannwhitneyu(plotdf2['notriggersNMD'].loc[plotdf2['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf2['notriggersNMD'].loc[plotdf2['ORR'].isin(['PD'])])
+U1, p = mannwhitneyu(plotdf['triggersNMD'].loc[plotdf['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf['triggersNMD'].loc[plotdf['ORR'].isin(['PD'])], alternative = 'greater')
+U1, p2 = mannwhitneyu(plotdf2['notriggersNMD'].loc[plotdf2['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf2['notriggersNMD'].loc[plotdf2['ORR'].isin(['PD'])], alternative = 'greater')
 
 ####fsINDELs evade
 data = [plotdf2['notriggersNMD'].loc[plotdf2['ORR'].isin(['CRPR', 'PR', 'CR', 'SD'])], plotdf2['notriggersNMD'].loc[plotdf2['ORR'].isin(['PD'])]]
