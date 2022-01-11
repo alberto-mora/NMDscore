@@ -158,12 +158,12 @@ excluded2 =  plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Exclude
 infiltrated2 =  plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Infiltrated']
 
 #p value en distinta categoría
-U1, p = mannwhitneyu(plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['InmunoPheno'] == 'Desert'], plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['InmunoPheno'] == 'Infiltrated'])
-U3, p3 = mannwhitneyu(plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Desert'], plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Infiltrated'])
+U1, p = mannwhitneyu(plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['InmunoPheno'] == 'Desert'], plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['InmunoPheno'] == 'Infiltrated'], alternative = 'greater')
+U3, p3 = mannwhitneyu(plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Desert'], plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Infiltrated'], alternative = 'greater')
 
 #p value en la misma categoría
-U5, p5 = mannwhitneyu(plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['InmunoPheno'] == 'Desert'], plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Desert'])
-U6, p6 = mannwhitneyu(plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['InmunoPheno'] == 'Infiltrated'], plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Infiltrated'])
+U5, p5 = mannwhitneyu(plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['InmunoPheno'] == 'Desert'], plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Desert'], alternative = 'greater')
+U6, p6 = mannwhitneyu(plotdf2_aux['notriggersNMD'].loc[plotdf2_aux['InmunoPheno'] == 'Infiltrated'], plotdf_aux['triggersNMD'].loc[plotdf_aux['InmunoPheno'] == 'Infiltrated'], alternative = 'greater')
 
 #boxplot
 pos = [1,2,4,5]
