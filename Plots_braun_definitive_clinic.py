@@ -4,10 +4,10 @@ from scipy.stats import mannwhitneyu
 import numpy as np
 from scipy import stats
 
-clin = pd.read_csv('/home/vant/Braun/Clinical_and_Immune_Data.csv',sep='\t')
-df = pd.read_csv('/home/vant/Braun/new_NMDB_NoUCSC_Braun2.0_HD_remix_5.csv',sep='\t')
-rna = pd.read_csv('/home/vant/Braun/RNA_Braun.csv', sep='\t')
-cs = pd.read_csv('/home/vant/Braun/Braun_CIBERSORTX.csv', sep='\t')
+clin = pd.read_csv('/home/vant/Braun/Clinical_and_Immune_Data.csv',sep='\t') #Datos clínicos recogidos de Braun et al., 2020
+df = pd.read_csv('/home/vant/Braun/new_NMDB_NoUCSC_Braun2.0_HD_remix_5.csv',sep='\t') #dataframe con variantes somáticas con NMD score
+rna = pd.read_csv('/home/vant/Braun/RNA_Braun.csv', sep='\t') #Datos de expresión recogidos de Braun et al., 2020
+cs = pd.read_csv('/home/vant/Braun/Braun_CIBERSORTX.csv', sep='\t') #Datos de deconvolution inmune recogidos de Braun et al., 2020
 
 def trigger_nmd(nmd):
     if nmd == '.':
