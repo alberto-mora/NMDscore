@@ -11,14 +11,14 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 
 ##Abre el archivo Braun.csv
-filename = '/home/vant/Braun/Braun.csv' #Dataframe con las variantes somáticas, se puede descargar de Braun et al., 2020.
+filename = '/home/vant/Braun/Braun.csv' #Dataframe con las variantes somáticas, se puede descargar de Braun et al., 2020, documento llamado Table S2. Somatic mutations in the CheckMate cohorts (MAF file).
 
 ## Carga archivos de referencia (gtf, refgen) Archivo GTF se puede descargar de https://figshare.com/articles/dataset/NMDetective/7803398
 
 gtf = read_gtf("/home/vant/NMDetective/CDS_hg19_NMDetectiveB_Lindeboom_et_al.v2.gtf") #GTF que contiene las zonas CDS de los trasncritos
 gtf_all = read_gtf("/home/vant/NMDetective/hg19_NMDetectiveB_Lindeboom_et_al.v2.gtf") #GTF que contiene toda la información del NMDetectiveB
 gtf_all = gtf_all.loc[(gtf_all['feature'] == 'exon') | (gtf_all['feature'] == 'CDS')] #Ahora contiene zonas CDS y exones enteros de los trasncritos, para sacar la zona utr
-gtfA = read_gtf("/home/vant/NMDetective/CDS_hg19_NMDetectiveA_Lindeboom_et_al.v2.gtf")
+gtfA = read_gtf("/home/vant/NMDetective/CDS_hg19_NMDetectiveA_Lindeboom_et_al.v2.gtf") #GTF que contiene toda la información del NMDetectiveA
 gtf['Feature'] = gtf['exon_id'].str.split('.').str[0]
 # Genoma de referencia
 refgen = '/home/vant/Braun/ucsc.hg19.fasta'
@@ -252,7 +252,7 @@ df['VEP_allele'] = df[REF] + '/' + df[ALT]
 df['ID_specific'] = df[chr].astype(str) + '_' + df[position].astype(str) + '_' + df['VEP_allele'] + '_' + df['Tumor_Sample_Barcode']
 df[chr] = 'chr' + df[chr].astype(str)
 
-########## MODIFICATION OF INDEL VARIANTS IN AGREEMENT WITH VCF_init
+########## NORMALIZATION OF INDEL VARIANTS
 # Insertions, adding the reference
 def addREF2Insertions(CHR, POS, refgen):
     region = CHR + ':' + str(POS) + '-' + str(POS)
@@ -303,4 +303,4 @@ df['NMDA'] = df.apply(lambda x: nmdxtract(x['ID'], x['PTCposition'], gtfA, x['Va
 
 # Save NMD-annotated df (NMD_Braun.csv)
 
-df.to_csv('new_NMDB_NoUCSC_Braun2.0_HD_remix_5.csv',sep='\t',index = None)
+df.to_csv('NMDB_Braun.csv',sep='\t',index = None)
